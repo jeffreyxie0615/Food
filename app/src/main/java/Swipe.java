@@ -1,30 +1,31 @@
 // define enumerator of food
-import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Swipe {
     public ArrayList<Food> foodList;
     private int ind = 0;
-    private ObjectMapper mapper = new ObjectMapper();
-
-    Swipe swiper = mapper.readValues(new File("/Users/tonywei/StudioProjects/Food/app/src/androidTest/java/Food"), Swipe.class);
 
     public Swipe() {
-        while (this.ind < someSize) {
-            foodList.add(new Food(someParameter));
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("../json/foods.json");
+        while (this.ind < 6) {
+            try {
+                foodList.add(mapper.readValue(file, Food.class));
+            } catch(IOException e) {
+                System.out.println(e);
+            }
             this.ind++;
         }
         this.ind = 0;
     }
 
-    
-
     public void swipeLeft() {
-        this.foodList.set(this.ind, this.foodList.get(this.ind).getRating() - 1);
+        this.foodList.get(this.ind).rating = this.foodList.get(this.ind).rating - 1;
     }
 
     public void swipeRight() {
-        this.foodList.set(this.ind, this.foodList.get(this.ind).getRating() + 1);
+        this.foodList.get(this.ind).rating = this.foodList.get(this.ind).rating + 1;
     }
 }

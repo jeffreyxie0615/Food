@@ -1,16 +1,12 @@
-import java.lang.reflect.Array;
 import java.util.*;
-
 public class Food {
     private String type;
+    private ArrayList<Picture> pictures;
+    public int rating;
 
-
-    private ArrayList<Picture> info;
-    private int rating;
-
-    public Food(String type, String url, String label, int rating) {
+    public Food(String type, ArrayList<Picture> pictures, int rating) {
         this.type = type;
-        this.info = new ArrayList<Picture>();
+        this.pictures = pictures;
         this.rating = rating;
     }
 }
