@@ -25,6 +25,7 @@ public class Swipe {
 
     public void swipeLeft() {
         this.foodList.get(this.ind).rating = this.foodList.get(this.ind).rating - 1;
+        int temp = this.foodList.get(this.ind).rating;
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode root = null;
         try {
@@ -35,7 +36,7 @@ public class Swipe {
         JsonNode steps = root.get("type");
         for (final JsonNode item : root) {
             if (item.findPath("type").asText().equals(this.foodList.get(this.ind).type)) {
-                ((ObjectNode) item).put("object", "Firefox");
+                ((ObjectNode) item).put("rating", temp);
             }
         }
 //        if (steps.isArray()) {
