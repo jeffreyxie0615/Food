@@ -39,18 +39,23 @@ public class Swipe {
                 ((ObjectNode) item).put("rating", temp);
             }
         }
-//        if (steps.isArray()) {
-//            for (final JsonNode item : steps) {
-//                if (item.findPath("stepId").asText().equals("1")) {
-//                    ((ObjectNode) item).put("object", "Firefox");
-//                }
-//            }
-//            String resultJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(root);
-//            System.out.println(resultJson);
-//        }
     }
 
     public void swipeRight() {
         this.foodList.get(this.ind).rating = this.foodList.get(this.ind).rating + 1;
+        int temp = this.foodList.get(this.ind).rating;
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode root = null;
+        try {
+            root = objectMapper.readTree(new File("../json/foods.json"));
+        }catch(IOException e) {
+            System.out.println(e);
+        }
+        JsonNode steps = root.get("type");
+        for (final JsonNode item : root) {
+            if (item.findPath("type").asText().equals(this.foodList.get(this.ind).type)) {
+                ((ObjectNode) item).put("rating", temp);
+            }
+        }
     }
 }
