@@ -25,7 +25,7 @@ public class Login {
     }
 
     public void SignUp(String userName, String password) {
-        Profile p = new Profile();
+        Profile p = new Profile("","");
 
     }
 
