@@ -1,6 +1,6 @@
 import java.util.*;
 public class Food {
-    private String type;
+    public String type;
     private ArrayList<Picture> pictures;
     public int rating;
 
