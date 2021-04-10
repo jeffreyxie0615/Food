@@ -1,8 +1,13 @@
+import java.io.File;
+import java.io.ObjectStreamException;
 import java.util.*;
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Login {
     private String userName;
     private String password;
+    private ObjectMapper mapper =  new ObjectMapper();
 
     public Login(String userName, String password) {
         this.userName = userName;
@@ -25,7 +30,12 @@ public class Login {
     }
 
     public void SignUp(String userName, String password) {
-        Profile p = new Profile();
+        Profile p = new Profile(userName, password);
+        try {
+            mapper.writeValue(new File("/Users/tonywei/StudioProjects/Food/app/src/androidTest/java/Profile"), p);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 
