@@ -29,10 +29,10 @@ public class Login {
         return false;
     }
 
-    public void SignUp(String userName, String password) {
+    public void SignUp(String userName, String password, String path) {
         Profile p = new Profile(userName, password);
         try {
-            mapper.writeValue(new File("/Users/tonywei/StudioProjects/Food/app/src/androidTest/java/Profile"), p);
+            mapper.writeValue(new File(path), p);
         } catch (Exception e) {
             System.out.println(e);
         }
