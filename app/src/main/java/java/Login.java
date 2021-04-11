@@ -10,8 +10,8 @@ public class Login extends RealmObject{
     private String userName;
     private String password;
 
-    public Login(){
-    }
+    public Login(){}
+
     public Login(String userName, String password) {
         this.userName = userName;
         this.password = password;
@@ -27,7 +27,7 @@ public class Login extends RealmObject{
     }
 
     public boolean CheckUser(String user, String pass) {
-        if (user.equalsIgnoreCase(userName) && pass.equalsIgnoreCase(password)) {
+        if (user.trim().equalsIgnoreCase(userName) && pass.trim().equalsIgnoreCase(password)) {
             return true;
         }
         return false;

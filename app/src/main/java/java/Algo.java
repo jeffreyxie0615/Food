@@ -8,6 +8,7 @@ import io.realm.RealmList;
 
 public class Algo {
     private String cuisine = "";
+    private float distance = 0;
 
     public Algo(Profile p) {
         RealmList<Food> list = p.foodList;
@@ -20,7 +21,7 @@ public class Algo {
         Random random = new Random();
         float rand = random.nextFloat();
 
-        float distance = 0;
+
 
         for (int i = 0; i < list.size(); i++) {
             probabilities[i] = (probabilities[i] * Integer.parseInt(list.get(i).rating)) / 50;
@@ -29,12 +30,11 @@ public class Algo {
                 distance = probabilities[i] - rand;
             }
         }
-
-
-
-
     }
 
+    public float returnDistance() {
+        return distance;
+    }
     public String getCuisine() {
         return this.cuisine;
     }

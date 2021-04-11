@@ -11,6 +11,7 @@ public class Food extends RealmObject{
     public String rating;
 
     public Food(){};
+
     public Food(String type, String rating, String[] url, String[] label) {
         this.type = type;
         this.rating = rating;
