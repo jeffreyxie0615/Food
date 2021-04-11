@@ -39,6 +39,13 @@ public class ThirdFragment extends Fragment {
         Realm backgroundThreadRealm = Realm.getInstance(config);
         RealmResults<Food> foods = backgroundThreadRealm.where(Food.class).findAll();
         ImageView iv = view.findViewById(R.id.imageView);
+        String url = foods.get(i).pictures.get(ind).url;
+        String label = foods.get(i).pictures.get(ind).label;
+        Picasso.get().load(url).into(iv);
+//        if (ind == foods.get(i).pictures.size()) {
+//            ind = 0;
+//            i++;
+//        }
         iv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -65,6 +72,7 @@ public class ThirdFragment extends Fragment {
                                     backgroundThreadRealm.executeTransaction(transactionRealm -> {
                                         Food temp = new Food(foods.get(i).type, ((Integer)(Integer.valueOf(foods.get(i).rating) + 1)).toString(), foods.get(i).pictures);
                                         transactionRealm.insertOrUpdate(temp);
+                                        System.out.println(foods);
                                     });
                                     ind++;
                                     if (ind == foods.get(i).pictures.size()) {
@@ -77,6 +85,11 @@ public class ThirdFragment extends Fragment {
                                                     .navigate(R.id.action_SecondFragment_to_ThirdFragment);
                                         }
                                     }
+
+                                    String url = foods.get(i).pictures.get(ind).url;
+                                    String label = foods.get(i).pictures.get(ind).label;
+                                    Picasso.get().load(url).into(iv);
+
                                     return true;
                                 }
                                 if(deltaX > 0) {
@@ -84,6 +97,7 @@ public class ThirdFragment extends Fragment {
                                     backgroundThreadRealm.executeTransaction(transactionRealm -> {
                                         Food temp = new Food(foods.get(i).type, ((Integer)(Integer.valueOf(foods.get(i).rating) - 1)).toString(), foods.get(i).pictures);
                                         transactionRealm.insertOrUpdate(temp);
+                                        System.out.println(foods);
                                     });
                                     if (ind == foods.get(i).pictures.size()) {
                                         ind = 0;
@@ -95,6 +109,9 @@ public class ThirdFragment extends Fragment {
                                                     .navigate(R.id.action_SecondFragment_to_ThirdFragment);
                                         }
                                     }
+                                    String url = foods.get(i).pictures.get(ind).url;
+                                    String label = foods.get(i).pictures.get(ind).label;
+                                    Picasso.get().load(url).into(iv);
                                     return true;
                                 }
                             }

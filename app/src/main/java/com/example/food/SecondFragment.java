@@ -59,7 +59,7 @@ public class SecondFragment extends Fragment {
         String[] mexLabel = {"noodles"};
         Food mex = new Food("Mexican", "10", mexURL, mexLabel);
 
-        String[] italURL = {"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80"};
+        String[] italURL = {"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=700%2C636"};
         String[] italLabel = {"noodles"};
         Food ita = new Food("Italian", "10", italURL, italLabel);
 
