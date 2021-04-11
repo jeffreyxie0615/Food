@@ -4,14 +4,18 @@ import java.io.File;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Login {
+import io.realm.RealmObject;
+
+public class Login extends RealmObject{
     private String userName;
     private String password;
-    private ObjectMapper mapper =  new ObjectMapper();
 
+    public Login(){
+    }
     public Login(String userName, String password) {
         this.userName = userName;
         this.password = password;
+
     }
 
     public void SetUsername (String word) {
@@ -29,14 +33,8 @@ public class Login {
         return false;
     }
 
-    public void SignUp(String userName, String password, String path) {
-        Profile p = new Profile(userName, password);
-        try {
-            mapper.writeValue(new File(path), p);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+    public void SignUp() {
+        Profile p = new Profile(this.userName, this.password);
     }
 
 }
