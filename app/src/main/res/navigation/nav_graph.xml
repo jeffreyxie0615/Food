@@ -41,5 +41,9 @@
         android:name="com.example.food.FourthFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_fourth">
+        <argument
+            android:name="restaurant"
+            app:argType="string"
+            android:defaultValue='"maize mexican grill"' />
     </fragment>
 </navigation>
