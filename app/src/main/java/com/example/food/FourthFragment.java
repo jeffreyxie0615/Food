@@ -9,8 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.Algo;
+import java.Profile;
+
 import io.realm.*;
-public class FirstFragment extends Fragment {
+public class FourthFragment extends Fragment {
 
     @Override
     public View onCreateView(
@@ -24,12 +27,14 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Realm.init(getContext());
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
+        String realmName = "Food";
+        RealmConfiguration config = new RealmConfiguration.Builder().schemaVersion(3).deleteRealmIfMigrationNeeded().allowWritesOnUiThread(true).name(realmName).build();
+        Realm backgroundThreadRealm = Realm.getInstance(config);
+        backgroundThreadRealm.executeTransaction(transactionRealm -> {
+            Profile newPerson = backgroundThreadRealm.where(Profile.class).contains("username", SecondFragment.currUser).findAll().get(0);
+            Algo work = new Algo(newPerson);
+            newPerson.cuisine = work.getCuisine();
+            transactionRealm.insertOrUpdate(newPerson);
         });
     }
 }

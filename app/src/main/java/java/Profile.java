@@ -1,22 +1,24 @@
 package java;
 
-enum Cuisine{
-    MEXICAN, ITALIAN, ASIAN, AMERICAN, MEDITERRANEAN;
-}
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
-public class Profile {
-    private String userName;
-    private String password;
-    private Cuisine cuisine;
-    private Swipe swipe;
+public class Profile extends RealmObject {
+    @PrimaryKey String username="";
+    @Required String password="";
+    // realm doesn't support enum for some reason
+    public String cuisine="";
+    public RealmList<Food> foodList;
 
-    public Profile(String password, String userName){
-        this.userName = userName;
+    public Profile(){}
+    public Profile(String username, String password, RealmResults<Food> foods){
+        this.username = username;
         this.password = password;
-    }
-
-    public void getSwipe(Swipe swipe){
-        this.swipe = swipe;
+        this.foodList = new RealmList<>();
+        this.foodList.addAll(foods.subList(0, foods.size()));
     }
 
 

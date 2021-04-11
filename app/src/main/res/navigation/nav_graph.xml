@@ -22,7 +22,24 @@
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/Food" />
+            android:id="@+id/action_SecondFragment_to_ThirdFragment"
+            app:argType="String"
+            app:destination="@id/ThirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ThirdFragment"
+        android:name="com.example.food.ThirdFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_ThirdFragment_to_FourthFragment"
+            app:argType="String"
+            app:destination="@id/FourthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FourthFragment"
+        android:name="com.example.food.FourthFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_fourth">
     </fragment>
 </navigation>
