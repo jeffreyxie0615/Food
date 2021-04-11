@@ -7,8 +7,8 @@ import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
 public class Profile extends RealmObject {
-    @PrimaryKey String username="";
-    @Required String password="";
+    @PrimaryKey public String username="";
+    @Required public String password="";
     // realm doesn't support enum for some reason
     public String cuisine="";
     public RealmList<Food> foodList;
