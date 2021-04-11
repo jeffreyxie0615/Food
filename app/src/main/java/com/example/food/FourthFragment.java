@@ -48,6 +48,7 @@ public class FourthFragment extends Fragment {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             Object yelp = con.getContent();
+            System.out.println("yelp");
             System.out.println(yelp);
             System.out.println("yelp");
         }catch (Exception e){}

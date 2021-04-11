@@ -1,5 +1,7 @@
-package App;
+package java;
 
+import java.Food;
+import java.Profile;
 import java.util.Random;
 
 import io.realm.RealmList;
