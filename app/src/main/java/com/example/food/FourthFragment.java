@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -76,30 +77,6 @@ public class FourthFragment extends Fragment {
             System.out.println(e);
         }
 
-
-//        view.findViewById(R.id.order2_button).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                EditText name = view.findViewById(R.id.editTextNumberPassword3);
-//                EditText date = view.findViewById(R.id.editTextDate);
-//                EditText number = view.findViewById(R.id.editTextNumberPassword);
-//                EditText security = view.findViewById(R.id.editTextNumberPassword2);
-//
-//                String tempName = name.toString();
-//                String tempNumber = number.toString();
-//                String tempDate = date.toString();
-//                String tempSecurity = security.toString();
-//
-//                CreditCard card = new CreditCard(tempNumber, tempDate, tempName, tempSecurity);
-//
-//                backgroundThreadRealm.executeTransaction (transactionRealm -> {
-//                    transactionRealm.insertOrUpdate((RealmModel) card);
-//                });
-//
-////                NavHostFragment.findNavController(FourthFragment.this)
-////                        .navigate(R.id.);
-//            }
-//        });
 
     }
 }
