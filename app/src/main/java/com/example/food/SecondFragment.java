@@ -17,6 +17,8 @@ import java.Login;
 import java.Food;
 
 public class SecondFragment extends Fragment {
+    public static String currUser;
+    public static String currPass;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -40,15 +42,13 @@ public class SecondFragment extends Fragment {
                 String name = user.getText().toString();
                 String password = pass.getText().toString();
                 Login newPerson = new Login(name, password);
-                if (newPerson.CheckUser(name, password)) {
-                    newPerson.SignUp();
-                }
                 backgroundThreadRealm.executeTransaction (transactionRealm -> {
                     transactionRealm.insertOrUpdate(newPerson);
                 });
+                currUser = name;
+                currPass = password;
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_ThirdFragment);
-                System.out.println("FUCLK");
             }
         });
     }

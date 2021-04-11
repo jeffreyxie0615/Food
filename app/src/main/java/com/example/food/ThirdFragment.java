@@ -17,6 +17,8 @@ import io.realm.annotations.Required;
 import io.realm.RealmResults;
 import java.Login;
 import java.Food;
+import java.Profile;
+
 import com.squareup.picasso.*;
 public class ThirdFragment extends Fragment {
     static final int MIN_DISTANCE = 100;
@@ -42,10 +44,6 @@ public class ThirdFragment extends Fragment {
         String url = foods.get(i).pictures.get(ind).url;
         String label = foods.get(i).pictures.get(ind).label;
         Picasso.get().load(url).into(iv);
-//        if (ind == foods.get(i).pictures.size()) {
-//            ind = 0;
-//            i++;
-//        }
         iv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -81,8 +79,12 @@ public class ThirdFragment extends Fragment {
                                         if (i==5) {
                                             i=0;
                                             ind=0;
+                                            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                                                Profile newPerson = new Profile(SecondFragment.currUser, SecondFragment.currPass, foods);
+                                                transactionRealm.insertOrUpdate(foods);
+                                            });
                                             NavHostFragment.findNavController(ThirdFragment.this)
-                                                    .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+                                                    .navigate(R.id.action_ThirdFragment_to_FourthFragment);
                                         }
                                     }
 

@@ -33,8 +33,5 @@ public class Login extends RealmObject{
         return false;
     }
 
-    public void SignUp() {
-        Profile p = new Profile(this.userName, this.password);
-    }
 
 }
