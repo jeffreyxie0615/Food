@@ -57,11 +57,8 @@ public class SecondFragment extends Fragment {
             public void onClick(View view) {
                 String name = user.getText().toString();
                 String password = pass.getText().toString();
-                System.out.println(name);
-                System.out.println(backgroundThreadRealm.where(Profile.class).findAll());
                 RealmResults<Profile> ppl = backgroundThreadRealm.where(Profile.class).contains("username", name).findAll();
                 if (ppl.size() == 0) {
-                    System.out.println("here");
                     return;
                 }
                 Profile currPerson = ppl.get(0);

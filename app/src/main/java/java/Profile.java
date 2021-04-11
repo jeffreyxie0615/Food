@@ -10,8 +10,8 @@ public class Profile extends RealmObject {
     @PrimaryKey String username="";
     @Required String password="";
     // realm doesn't support enum for some reason
-    private String cuisine="";
-    private RealmList<Food> foodList;
+    public String cuisine="";
+    public RealmList<Food> foodList;
 
     public Profile(){}
     public Profile(String username, String password, RealmResults<Food> foods){

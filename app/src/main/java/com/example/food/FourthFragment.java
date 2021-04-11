@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.Algo;
+import java.Profile;
+
 import io.realm.*;
 public class FourthFragment extends Fragment {
 
@@ -24,6 +27,14 @@ public class FourthFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Realm.init(getContext());
-
+        String realmName = "Food";
+        RealmConfiguration config = new RealmConfiguration.Builder().schemaVersion(3).deleteRealmIfMigrationNeeded().allowWritesOnUiThread(true).name(realmName).build();
+        Realm backgroundThreadRealm = Realm.getInstance(config);
+        backgroundThreadRealm.executeTransaction(transactionRealm -> {
+            Profile newPerson = backgroundThreadRealm.where(Profile.class).contains("username", SecondFragment.currUser).findAll().get(0);
+            Algo work = new Algo(newPerson);
+            newPerson.cuisine = work.getCuisine();
+            transactionRealm.insertOrUpdate(newPerson);
+        });
     }
 }
