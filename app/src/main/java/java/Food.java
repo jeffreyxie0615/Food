@@ -1,3 +1,5 @@
+package java;
+
 import java.util.*;
 public class Food {
     public String type;

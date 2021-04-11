@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package java;
 
 enum Cuisine{
     MEXICAN, ITALIAN, ASIAN, AMERICAN, MEDITERRANEAN;

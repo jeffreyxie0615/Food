@@ -1,5 +1,5 @@
 package com.example.food;
-
+import android.widget.EditText;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import java.Login;
 public class SecondFragment extends Fragment {
 
     @Override
@@ -22,12 +23,17 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
+        EditText user = view.findViewById(R.id.editTextTextPersonName);
+        EditText pass = view.findViewById(R.id.editTextTextPassword);
+        view.findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                String name = user.getText().toString();
+                String password = pass.getText().toString();
+                Login newPerson = new Login(name, password);
+                newPerson.CheckUser(name, password);
+                System.out.println("here");
+                newPerson.SignUp(name, password, "C:\\Users\\Jeffrey Xie\\AndroidStudioProjects\\Food2\\app\\src\\main\\java\\java\\Profile.JSON");
             }
         });
     }

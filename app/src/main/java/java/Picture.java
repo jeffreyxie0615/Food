@@ -1,3 +1,5 @@
+package java;
+
 public class Picture {
     private String url;
     private String label;

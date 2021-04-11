@@ -1,4 +1,4 @@
-// define enumerator of food
+package java;// define enumerator of food
 import java.io.IOException;
 import java.util.*;
 import java.io.File;
