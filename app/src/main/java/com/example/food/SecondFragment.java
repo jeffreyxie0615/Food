@@ -15,6 +15,7 @@ import io.realm.annotations.Required;
 import io.realm.RealmResults;
 import java.Login;
 import java.Food;
+import java.Profile;
 
 public class SecondFragment extends Fragment {
     public static String currUser;
@@ -51,6 +52,25 @@ public class SecondFragment extends Fragment {
                         .navigate(R.id.action_SecondFragment_to_ThirdFragment);
             }
         });
+        view.findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = user.getText().toString();
+                String password = pass.getText().toString();
+                System.out.println(name);
+                System.out.println(backgroundThreadRealm.where(Profile.class).findAll());
+                RealmResults<Profile> ppl = backgroundThreadRealm.where(Profile.class).contains("username", name).findAll();
+                if (ppl.size() == 0) {
+                    System.out.println("here");
+                    return;
+                }
+                Profile currPerson = ppl.get(0);
+                currUser = name;
+                currPass = password;
+                NavHostFragment.findNavController(SecondFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+            }
+        });
     }
 
     // make new food
@@ -63,11 +83,11 @@ public class SecondFragment extends Fragment {
         String[] italLabel = {"noodles"};
         Food ita = new Food("Italian", "10", italURL, italLabel);
 
-        String[] asaURL = {"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80"};
+        String[] asaURL = {"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvxAJcSQRs2u2vkyS5GoKLm66Op0CqWt0rjg&usqp=CAU"};
         String[] asaLabel = {"noodles"};
         Food asa = new Food("Asian", "10", asaURL, asaLabel);
 
-        String[] ameURL = {"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&w=1000&q=80"};
+        String[] ameURL = {"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1rYMfEECKYBDwAtRmDIASXVuLmOk-GShvbg&usqp=CAU"};
         String[] ameLabel = {"noodles"};
         Food ame = new Food("American", "10", ameURL, ameLabel);
 

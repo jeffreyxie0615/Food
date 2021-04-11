@@ -66,7 +66,6 @@ public class ThirdFragment extends Fragment {
                             if(Math.abs(deltaX) > MIN_DISTANCE){
                                 // left or right
                                 if(deltaX < 0) {
-                                    System.out.println("here");
                                     backgroundThreadRealm.executeTransaction(transactionRealm -> {
                                         Food temp = new Food(foods.get(i).type, ((Integer)(Integer.valueOf(foods.get(i).rating) + 1)).toString(), foods.get(i).pictures);
                                         transactionRealm.insertOrUpdate(temp);
@@ -81,7 +80,7 @@ public class ThirdFragment extends Fragment {
                                             ind=0;
                                             backgroundThreadRealm.executeTransaction(transactionRealm -> {
                                                 Profile newPerson = new Profile(SecondFragment.currUser, SecondFragment.currPass, foods);
-                                                transactionRealm.insertOrUpdate(foods);
+                                                transactionRealm.insertOrUpdate(newPerson);
                                             });
                                             NavHostFragment.findNavController(ThirdFragment.this)
                                                     .navigate(R.id.action_ThirdFragment_to_FourthFragment);
@@ -95,20 +94,24 @@ public class ThirdFragment extends Fragment {
                                     return true;
                                 }
                                 if(deltaX > 0) {
-                                    System.out.println("there");
                                     backgroundThreadRealm.executeTransaction(transactionRealm -> {
                                         Food temp = new Food(foods.get(i).type, ((Integer)(Integer.valueOf(foods.get(i).rating) - 1)).toString(), foods.get(i).pictures);
                                         transactionRealm.insertOrUpdate(temp);
                                         System.out.println(foods);
                                     });
+                                    ind++;
                                     if (ind == foods.get(i).pictures.size()) {
                                         ind = 0;
                                         i++;
                                         if (i==5) {
                                             i=0;
                                             ind=0;
+                                            backgroundThreadRealm.executeTransaction(transactionRealm -> {
+                                                Profile newPerson = new Profile(SecondFragment.currUser, SecondFragment.currPass, foods);
+                                                transactionRealm.insertOrUpdate(newPerson);
+                                            });
                                             NavHostFragment.findNavController(ThirdFragment.this)
-                                                    .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+                                                    .navigate(R.id.action_ThirdFragment_to_FourthFragment);
                                         }
                                     }
                                     String url = foods.get(i).pictures.get(ind).url;
