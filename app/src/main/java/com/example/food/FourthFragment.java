@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
 import com.yelp.clientlib.entities.SearchResponse;
 
+import java.CreditCard;
 import java.io.IOException;
 import java.util.*;
 import java.net.HttpURLConnection;
@@ -62,6 +64,7 @@ public class FourthFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
+            String temp = params.get("term");
             Call<SearchResponse> call = yelpAPI.search("Austin", params);
             SearchResponse searchResponse = call.execute().body();
             int totalNumberOfResult = searchResponse.total();  // 3
@@ -72,6 +75,31 @@ public class FourthFragment extends Fragment {
         } catch (IOException e) {
             System.out.println(e);
         }
+
+
+        view.findViewById(R.id.order_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText name = view.findViewById(R.id.editTextNumberPassword3);
+                EditText date = view.findViewById(R.id.editTextDate);
+                EditText number = view.findViewById(R.id.editTextNumberPassword);
+                EditText security = view.findViewById(R.id.editTextNumberPassword2);
+
+                String tempName = name.toString();
+                String tempNumber = number.toString();
+                String tempDate = date.toString();
+                String tempSecurity = security.toString();
+
+                CreditCard card = new CreditCard(tempNumber, tempDate, tempName, tempSecurity);
+
+                backgroundThreadRealm.executeTransaction (transactionRealm -> {
+                    transactionRealm.insertOrUpdate(card);
+                });
+
+                NavHostFragment.findNavController(FourthFragment.this)
+                        .navigate(R.id.);
+            }
+        });
 
     }
 }

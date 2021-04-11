@@ -43,6 +43,9 @@ public class SecondFragment extends Fragment {
                 String name = user.getText().toString();
                 String password = pass.getText().toString();
                 Login newPerson = new Login(name, password);
+                if (name.trim().length() < 1 || name == null || password.trim().length() < 1 || password == null) {
+                    return;
+                }
                 backgroundThreadRealm.executeTransaction (transactionRealm -> {
                     transactionRealm.insertOrUpdate(newPerson);
                 });
@@ -61,6 +64,16 @@ public class SecondFragment extends Fragment {
                 if (ppl.size() == 0) {
                     return;
                 }
+                boolean check = false;
+                for (int i = 0; i < ppl.size(); i++) {
+                    if (ppl.get(i).getUsername().trim().equals(user) && ppl.get(i).getPassword().trim().equals(password)) {
+                        check = true;
+                    }
+                }
+                if (!check) {
+                    return;
+                }
+
                 Profile currPerson = ppl.get(0);
                 currUser = name;
                 currPass = password;
