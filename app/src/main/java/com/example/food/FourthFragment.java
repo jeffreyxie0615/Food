@@ -41,7 +41,7 @@ public class FourthFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_fourth, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -72,34 +72,34 @@ public class FourthFragment extends Fragment {
             String businessName = businesses.get(0).name();
             Double rating = businesses.get(0).rating();
             System.out.println(businessName);
-        } catch (IOException e) {g
+        } catch (IOException e) {
             System.out.println(e);
         }
 
 
-        view.findViewById(R.id.order_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText name = view.findViewById(R.id.editTextNumberPassword3);
-                EditText date = view.findViewById(R.id.editTextDate);
-                EditText number = view.findViewById(R.id.editTextNumberPassword);
-                EditText security = view.findViewById(R.id.editTextNumberPassword2);
-
-                String tempName = name.toString();
-                String tempNumber = number.toString();
-                String tempDate = date.toString();
-                String tempSecurity = security.toString();
-
-                CreditCard card = new CreditCard(tempNumber, tempDate, tempName, tempSecurity);
-
-                backgroundThreadRealm.executeTransaction (transactionRealm -> {
-                    transactionRealm.insertOrUpdate(card);
-                });
-
-                NavHostFragment.findNavController(FourthFragment.this)
-                        .navigate(R.id.);
-            }
-        });
+//        view.findViewById(R.id.order2_button).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                EditText name = view.findViewById(R.id.editTextNumberPassword3);
+//                EditText date = view.findViewById(R.id.editTextDate);
+//                EditText number = view.findViewById(R.id.editTextNumberPassword);
+//                EditText security = view.findViewById(R.id.editTextNumberPassword2);
+//
+//                String tempName = name.toString();
+//                String tempNumber = number.toString();
+//                String tempDate = date.toString();
+//                String tempSecurity = security.toString();
+//
+//                CreditCard card = new CreditCard(tempNumber, tempDate, tempName, tempSecurity);
+//
+//                backgroundThreadRealm.executeTransaction (transactionRealm -> {
+//                    transactionRealm.insertOrUpdate((RealmModel) card);
+//                });
+//
+////                NavHostFragment.findNavController(FourthFragment.this)
+////                        .navigate(R.id.);
+//            }
+//        });
 
     }
 }
